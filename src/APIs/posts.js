@@ -7,4 +7,6 @@ export const CreatePostApi = async (post) => await axios.post(url, post);
 export const UpdatePostApi = async (post, id) =>
   await axios.put(`${url}/${id}`, post);
 
+export const likePostAPI = async (id) => await axios.put(`${url}/like/${id}`);
+
 export const DeletePostApi = async (id) => await axios.delete(`${url}/${id}`);

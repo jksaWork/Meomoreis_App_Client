@@ -6,12 +6,12 @@ import {
   MdOutlineEditNote,
 } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { DeletePost, editPost } from "../redux/actions/post";
+import { DeletePost, editPost, likePost } from "../redux/actions/post";
 import { openModalFun } from "../redux/actions/settings";
 
 function PostCard({ item }) {
   // const id  = _id;
-  const { _id, selectedFiled, title, message } = item;
+  const { _id, selectedFiled, title, message, LikeCount } = item;
   // console.log();
 
   const [ShowMenu, setShowMenu] = useState(false);
@@ -66,8 +66,15 @@ function PostCard({ item }) {
           <p className="text-xl font-cairo ">{message}</p>
         </div>
         <div>
-          <span className="p-2 cursor-pointer">
-            {false ? <FcLike size={30} /> : <FcLikePlaceholder size={30} />}
+          <span
+            className="p-2 cursor-pointer"
+            onClick={() => dispatch(likePost(item._id))}
+          >
+            {LikeCount > 0 ? (
+              <FcLike size={30} />
+            ) : (
+              <FcLikePlaceholder size={30} />
+            )}
           </span>
         </div>
       </div>
