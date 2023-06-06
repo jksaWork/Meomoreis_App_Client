@@ -1,39 +1,24 @@
 import React, { useState } from "react";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
 import { openModalFun, closeModalFun } from "../redux/actions/settings";
 import FileBase64 from "react-file-base64";
-import { useDispatch } from "react-redux";
-import { createPost } from "../redux/actions/post";
+import { useDispatch, useSelector } from "react-redux";
+import { createPost, updatePost } from "../redux/actions/post";
 
-const SignupSchema = Yup.object().shape({
-  title: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  message: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  tags: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  creator: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-});
+import { MessageFromSchema } from "../validators/MessageFormValidator";
 
 export const ValidationSchemaExample = () => {
   const [baseValue, setbaseValue] = useState({});
   const dispatch = useDispatch();
-  () => toast("Wow so easy!")();
+  const { form, update_post_id } = useSelector((s) => s.posts);
+  console.log(form);
   const SubmitFun = (values) => {
     try {
-      values.file = baseValue;
+      values.selectedFiled = baseValue.base64;
       console.log(values);
-      dispatch(createPost(values));
+
+      if (update_post_id == null) dispatch(createPost(values));
+      else dispatch(updatePost(values, update_post_id));
       dispatch(closeModalFun());
       Swal.fire("Good job!", "Your Message is Saves Sucess", "success");
     } catch (err) {}
@@ -42,14 +27,8 @@ export const ValidationSchemaExample = () => {
     <>
       <div>
         <Formik
-          initialValues={{
-            title: "",
-            message: "",
-            tags: "",
-            creator: "",
-            file: "",
-          }}
-          validationSchema={SignupSchema}
+          initialValues={form}
+          validationSchema={MessageFromSchema}
           onSubmit={SubmitFun}
         >
           {({ errors, touched }) => (
@@ -104,13 +83,23 @@ export const ValidationSchemaExample = () => {
                 >
                   Close
                 </button>
-                <button
-                  className="bg-emerald-500  active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="submit"
-                  //    onClick={() => console.log("Hello World")}
-                >
-                  Save Changes
-                </button>
+                {update_post_id == null ? (
+                  <button
+                    className="bg-emerald-500  active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="submit"
+                    //    onClick={() => console.log("Hello World")}
+                  >
+                    Save
+                  </button>
+                ) : (
+                  <button
+                    className="bg-emerald-500  active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="submit"
+                    //    onClick={() => console.log("Hello World")}
+                  >
+                    Update
+                  </button>
+                )}
               </div>
             </Form>
           )}

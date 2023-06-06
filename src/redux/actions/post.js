@@ -19,3 +19,21 @@ export const createPost = (post) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const editPost = (_id) => async (dispatch) => {
+  try {
+    console.log(_id);
+    dispatch({ type: "EDIT_POST", payload: _id });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updatePost = (post, id) => async (dispatch) => {
+  try {
+    const { data } = await api.UpdatePostApi(post, id);
+    dispatch({ type: "UPDATE_POST", payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};

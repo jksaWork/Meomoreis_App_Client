@@ -3,22 +3,24 @@ import { AppDenied, LoadingPost, PostCard } from "./index";
 import { cards } from "../constants";
 import { useSelector } from "react-redux";
 import noFound from "./../assets/no_found.svg";
+import { FcPlus, FcLike } from "react-icons/fc";
+
 function Posts() {
-  const posts = useSelector((s) => s.posts);
-  const [Loading, setLoading] = useState(false);
-  if (posts.length < 1)
+  const { posts, loading } = useSelector((s) => s.posts);
+  console.log(posts);
+  if (loading == false && posts.length == 0)
     return <AppDenied img={noFound} mes="No Memories Right Now !!" />;
 
-  return posts ? (
+  return loading ? (
     <div>
-      {cards.map((el) => (
-        <LoadingPost key={el.title} />
+      {cards.map((el, index) => (
+        <LoadingPost key={`${el.title} ${index}`} />
       ))}
     </div>
   ) : (
     <div className="px-3">
-      {cards.map((el) => (
-        <PostCard key={el.title} item={el} />
+      {posts.map((el, index) => (
+        <PostCard key={`${el._id} ${index}`} item={el} />
       ))}
     </div>
   );
