@@ -2,6 +2,7 @@
   "name": "memories_application_client",
   "private": true,
   "version": "0.0.0",
+  "proxy": "http://localhost:3000",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,9 +11,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@sweetalert2/theme-dark": "^5.0.15",
+    "formik": "^2.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.9.0"
+    "react-icons": "^4.9.0",
+    "react-toastify": "^9.1.3",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

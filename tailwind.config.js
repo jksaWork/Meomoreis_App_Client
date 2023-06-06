@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         primary: "#0f172a",
+        secondary: "#64748b",
       },
       fontFamily: {
         cairo: ["Cairo", "sans-serif"], // Ensure fonts with spaces have " " surrounding it.
