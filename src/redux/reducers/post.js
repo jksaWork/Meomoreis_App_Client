@@ -19,7 +19,16 @@ export default (postsSettings = initPostSettings, action) => {
       return { ...postsSettings, loading: false, posts: action.payload };
       break;
     case "CREATE_POST":
-      return { ...postsSettings, posts: [...posts, action.payload] };
+      return {
+        ...postsSettings,
+        posts: [...posts, action.payload],
+        form: {
+          title: "",
+          message: "",
+          tags: "",
+          creator: "",
+        },
+      };
       break;
     case "EDIT_POST":
       const post = posts.find((el) => el._id == action.payload);
@@ -38,6 +47,12 @@ export default (postsSettings = initPostSettings, action) => {
     case "UPDATE_POST":
       return {
         ...postsSettings,
+        form: {
+          title: "",
+          message: "",
+          tags: "",
+          creator: "",
+        },
         posts: posts.map((el) => {
           console.log(action.payload, el);
           if (el._id == action.payload._id) {
@@ -45,6 +60,17 @@ export default (postsSettings = initPostSettings, action) => {
           }
           return el;
         }),
+      };
+      break;
+
+    case "DELETE_POST":
+      const new_posts = posts.filter((el) => {
+        return el._id != action.payload;
+      });
+      console.log(new_posts, "new posts");
+      return {
+        ...postsSettings,
+        posts: new_posts,
       };
       break;
     default:

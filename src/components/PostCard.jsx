@@ -6,7 +6,7 @@ import {
   MdOutlineEditNote,
 } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { editPost } from "../redux/actions/post";
+import { DeletePost, editPost } from "../redux/actions/post";
 import { openModalFun } from "../redux/actions/settings";
 
 function PostCard({ item }) {
@@ -21,6 +21,7 @@ function PostCard({ item }) {
     dispatch(editPost(id));
     dispatch(openModalFun());
   };
+
   return (
     <div className="w-full mt-6  bg-[#64748b] p-3 overflow-hidden  rounded-md">
       <div className="relative group">
@@ -45,7 +46,10 @@ function PostCard({ item }) {
                   Edit{" "}
                 </div>
 
-                <div className="text-black p-1 px-2 flex items-center gap-2 hover:bg-[#ddd]  cursor-pointer">
+                <div
+                  onClick={() => dispatch(DeletePost(item._id))}
+                  className="text-black p-1 px-2 flex items-center gap-2 hover:bg-[#ddd]  cursor-pointer"
+                >
                   <span>
                     <MdDeleteSweep />
                   </span>
