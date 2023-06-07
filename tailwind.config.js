@@ -5,7 +5,9 @@ export default {
     extend: {
       colors: {
         primary: "#0f172a",
-        secondary: "#64748b",
+        secondary: "#0f172a",
+        card: "#1e293b",
+        IndigoColor: "#6c63ff",
       },
       fontFamily: {
         cairo: ["Cairo", "sans-serif"], // Ensure fonts with spaces have " " surrounding it.

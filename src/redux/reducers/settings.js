@@ -8,6 +8,7 @@ export default (settings = settingInit, action) => {
     case "MODAL":
       return { ...settings, openModal: action.payload };
       break;
+
     default:
       return settings;
       break;

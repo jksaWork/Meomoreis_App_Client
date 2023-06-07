@@ -23,7 +23,7 @@ function PostCard({ item }) {
   };
 
   return (
-    <div className="w-full mt-6  bg-[#64748b] p-3 overflow-hidden  rounded-md">
+    <div className="w-full mt-6  bg-card p-3 overflow-hidden  rounded-md">
       <div className="relative group">
         <img src={selectedFiled} className="w-[100%] h-[200px] rounded-lg" />
         <div className="options group-hover:block hidden absolute top-0 right-0 bg-black bg-opacity-20 w-full h-full ">
