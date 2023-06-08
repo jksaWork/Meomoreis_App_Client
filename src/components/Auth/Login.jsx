@@ -5,13 +5,26 @@ import { LoginValidator } from "../../validators/LoginValidator";
 import CustomFiled from "../CustomFiled";
 import { FaGoogle } from "react-icons/fa";
 import { MdOutlineLock } from "react-icons/md";
-import { Link } from "react-router-dom";
-const LoginWithServe = (values) => console.log(values);
+import { Link, useNavigate } from "react-router-dom";
 const responseGoogle = (res) => console.log(res);
 
 import { GoogleLogin } from "@leecheuk/react-google-login";
+import { useDispatch } from "react-redux";
+import { LoginAction } from "../../redux/actions/users";
 
 function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const LoginWithServe = (values) => {
+    console.log(values);
+    dispatch(LoginAction(values)).then(() => {
+      navigate("/");
+    });
+
+    console.log("done");
+  };
+
   return (
     <div className="flex items-center justify-center h-screen ">
       <div className="card bg-card rounded-md w-[350px] p-5 max-w-[90%] ">

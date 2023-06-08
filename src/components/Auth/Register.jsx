@@ -15,9 +15,16 @@ import { registerAction } from "../../redux/actions/users";
 function Register() {
   const dispacth = useDispatch();
   const navigate = useNavigate();
-  const LoginWithServe = (values) => {
-    dispacth(registerAction(values));
-    navigate("/");
+  const LoginWithServe = async (values) => {
+    console.log(values);
+    try {
+      await dispacth(registerAction(values));
+      navigate("/");
+    } catch (e) {
+      console.log(e, "Errors");
+      // setErrors()
+    }
+    // navigate("/");
   };
   return (
     <div className="flex items-center justify-center h-screen ">
@@ -92,7 +99,7 @@ function Register() {
                         <span>Contuino With Google</span>
                       </button>
                       <div className="text-center underline">
-                        <Link to="/register">You Don't Have Account ?</Link>
+                        <Link to="/login">Already Have Account ?</Link>
                       </div>
                     </div>
                   </Form>
