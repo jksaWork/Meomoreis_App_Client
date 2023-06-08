@@ -32,7 +32,6 @@ export default (postsSettings = initPostSettings, action) => {
       break;
     case "EDIT_POST":
       const post = posts.find((el) => el._id == action.payload);
-      // console.log(post);
       return {
         ...postsSettings,
         form: {
@@ -54,7 +53,6 @@ export default (postsSettings = initPostSettings, action) => {
           creator: "",
         },
         posts: posts.map((el) => {
-          console.log(action.payload, el);
           if (el._id == action.payload._id) {
             return action.payload;
           }
@@ -67,7 +65,6 @@ export default (postsSettings = initPostSettings, action) => {
       const new_posts = posts.filter((el) => {
         return el._id != action.payload;
       });
-      console.log(new_posts, "new posts");
       return {
         ...postsSettings,
         posts: new_posts,

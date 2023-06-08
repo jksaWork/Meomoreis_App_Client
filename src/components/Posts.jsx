@@ -7,7 +7,6 @@ import { FcPlus, FcLike } from "react-icons/fc";
 
 function Posts() {
   const { posts, loading } = useSelector((s) => s.posts);
-  console.log(posts);
   if (loading == false && posts.length == 0)
     return <AppDenied img={noFound} mes="No Memories Right Now !!" />;
 

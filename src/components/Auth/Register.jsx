@@ -16,12 +16,10 @@ function Register() {
   const dispacth = useDispatch();
   const navigate = useNavigate();
   const LoginWithServe = async (values) => {
-    console.log(values);
     try {
       await dispacth(registerAction(values));
       navigate("/");
     } catch (e) {
-      console.log(e, "Errors");
       // setErrors()
     }
     // navigate("/");

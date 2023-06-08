@@ -5,14 +5,16 @@ import {
   MdDeleteSweep,
   MdOutlineEditNote,
 } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { DeletePost, editPost, likePost } from "../redux/actions/post";
 import { openModalFun } from "../redux/actions/settings";
 
 function PostCard({ item }) {
   // const id  = _id;
+  const { relativeclass } = useSelector((s) => s.settings);
+  // relativeclass();
+  // console.log(relativeclass);
   const { _id, selectedFiled, title, message, LikeCount } = item;
-  // console.log();
 
   const [ShowMenu, setShowMenu] = useState(false);
   const dispatch = useDispatch();
@@ -24,41 +26,43 @@ function PostCard({ item }) {
 
   return (
     <div className="w-full mt-6  bg-card p-3 overflow-hidden  rounded-md">
-      <div className="relative group">
+      <div className={`${!relativeclass ? "relative" : ""} group`}>
         <img src={selectedFiled} className="w-[100%] h-[200px] rounded-lg" />
-        <div className="options group-hover:block hidden absolute top-0 right-0 bg-black bg-opacity-20 w-full h-full ">
-          <div className="p-3 float-right">
-            <span
-              className="cursor-pointer"
-              onClick={() => setShowMenu((p) => !p)}
-            >
-              <MdDragIndicator size="20" />
-            </span>
-            {ShowMenu && (
-              <div className="w-[150px] transition-all duration-1000 bg-white rounded-md absolute top-8 right-6">
-                <div
-                  onClick={() => HandelEditFrom(item._id)}
-                  className="text-black p-1 px-2 flex items-center gap-2 hover:bg-[#ddd] cursor-pointer"
-                >
-                  <span className="">
-                    <MdOutlineEditNote />
-                  </span>{" "}
-                  Edit{" "}
-                </div>
+        {!relativeclass && (
+          <div className="options group-hover:block hidden absolute top-0 right-0 bg-black bg-opacity-20 w-full h-full ">
+            <div className="p-3 float-right">
+              <span
+                className="cursor-pointer"
+                onClick={() => setShowMenu((p) => !p)}
+              >
+                <MdDragIndicator size="20" />
+              </span>
+              {ShowMenu && (
+                <div className="w-[150px] transition-all duration-1000 bg-white rounded-md absolute top-8 right-6">
+                  <div
+                    onClick={() => HandelEditFrom(item._id)}
+                    className="text-black p-1 px-2 flex items-center gap-2 hover:bg-[#ddd] cursor-pointer"
+                  >
+                    <span className="">
+                      <MdOutlineEditNote />
+                    </span>{" "}
+                    Edit{" "}
+                  </div>
 
-                <div
-                  onClick={() => dispatch(DeletePost(item._id))}
-                  className="text-black p-1 px-2 flex items-center gap-2 hover:bg-[#ddd]  cursor-pointer"
-                >
-                  <span>
-                    <MdDeleteSweep />
-                  </span>
-                  <span>Delete</span>{" "}
+                  <div
+                    onClick={() => dispatch(DeletePost(item._id))}
+                    className="text-black p-1 px-2 flex items-center gap-2 hover:bg-[#ddd]  cursor-pointer"
+                  >
+                    <span>
+                      <MdDeleteSweep />
+                    </span>
+                    <span>Delete</span>{" "}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className="flex justify-between items-center">
         <div className="">

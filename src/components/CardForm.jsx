@@ -11,12 +11,9 @@ export const ValidationSchemaExample = () => {
   const [baseValue, setbaseValue] = useState({});
   const dispatch = useDispatch();
   const { form, update_post_id } = useSelector((s) => s.posts);
-  console.log(form);
   const SubmitFun = (values) => {
     try {
       values.selectedFiled = baseValue.base64;
-      console.log(values);
-
       if (update_post_id == null) dispatch(createPost(values));
       else dispatch(updatePost(values, update_post_id));
       dispatch(closeModalFun());
@@ -70,7 +67,6 @@ export const ValidationSchemaExample = () => {
               <FileBase64
                 multiple={false}
                 onDone={(val) => {
-                  console.log(val);
                   setbaseValue(val);
                 }}
               />
@@ -87,7 +83,6 @@ export const ValidationSchemaExample = () => {
                   <button
                     className="bg-emerald-500  active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="submit"
-                    //    onClick={() => console.log("Hello World")}
                   >
                     Save
                   </button>
@@ -95,7 +90,6 @@ export const ValidationSchemaExample = () => {
                   <button
                     className="bg-emerald-500  active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="submit"
-                    //    onClick={() => console.log("Hello World")}
                   >
                     Update
                   </button>

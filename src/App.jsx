@@ -5,6 +5,7 @@ import { getPosts } from "./redux/actions/post";
 import Modal from "./components/Modal";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import { initAppAction } from "./redux/actions/users";
 
 const router = createBrowserRouter([
   {
@@ -26,9 +27,9 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(initAppAction());
     dispatch(getPosts);
     const CheckIfAppDenied = (width) => {
-      console.log(width);
       if (width > 700) setDeiedApp(true);
       else setDeiedApp(false);
     };
@@ -37,7 +38,7 @@ function App() {
     );
     CheckIfAppDenied(window.innerWidth);
     dispatch(getPosts());
-    console.log("affter Response");
+    dispatch(initAppAction());
   });
 
   if (DeiedApp == true) return <AppDenied />;
