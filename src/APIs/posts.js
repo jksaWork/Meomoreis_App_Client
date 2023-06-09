@@ -1,12 +1,22 @@
 import axios from "axios";
 
-const url = "http://127.0.0.1:3000/api/posts";
+const API = axios.create({ baseURL: "http://127.0.0.1:3000/api" });
+API.interceptors.request.use(function (req) {
+  if (localStorage.getItem("user"))
+    req.headers.Authorization = `Bearer ${
+      JSON.parse(localStorage.getItem("user")).token
+    }`;
+  // Do something before request is sent
+  return req;
+});
 
-export const fetchPostAPi = async () => await axios.get(url);
-export const CreatePostApi = async (post) => await axios.post(url, post);
+export const fetchPostAPi = async () => await API.get("/posts");
+export const SerachInPostAPi = async (terms) =>
+  await API.get(`/posts/search?term=${terms}`);
+export const CreatePostApi = async (post) => await API.post("/posts", post);
 export const UpdatePostApi = async (post, id) =>
   await axios.put(`${url}/${id}`, post);
 
-export const likePostAPI = async (id) => await axios.put(`${url}/like/${id}`);
+export const likePostAPI = async (id) => await API.put(`/posts/like/${id}`);
 
-export const DeletePostApi = async (id) => await axios.delete(`${url}/${id}`);
+export const DeletePostApi = async (id) => await API.delete(`posts/${id}`);

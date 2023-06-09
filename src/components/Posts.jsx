@@ -6,9 +6,15 @@ import noFound from "./../assets/no_found.svg";
 import { FcPlus, FcLike } from "react-icons/fc";
 
 function Posts() {
-  const { posts, loading } = useSelector((s) => s.posts);
-  if (loading == false && posts.length == 0)
-    return <AppDenied img={noFound} mes="No Memories Right Now !!" />;
+  const { posts, loading, search_term } = useSelector((s) => s.posts);
+  const { UserData } = useSelector((s) => s.users);
+  const user_id = UserData ? UserData[0] : "";
+  if (loading == false && posts.length == 0) {
+    if (search_term == null)
+      return <AppDenied img={noFound} mes="No Memories Right Now !!" />;
+    else
+      return <AppDenied img={noFound} mes="No Result For this Search Now !!" />;
+  }
 
   return loading ? (
     <div>
@@ -18,8 +24,16 @@ function Posts() {
     </div>
   ) : (
     <div className="px-3">
+      {search_term && (
+        <div className="text-xl mt-3">
+          {" "}
+          Search Result For{" "}
+          <span className="text-IndigoColor"> {search_term}</span>{" "}
+        </div>
+      )}
+
       {posts.map((el, index) => (
-        <PostCard key={`${el._id} ${index}`} item={el} />
+        <PostCard key={`${el._id} ${index}`} item={el} user_id={user_id} />
       ))}
     </div>
   );

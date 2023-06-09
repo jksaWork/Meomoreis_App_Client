@@ -2,6 +2,7 @@ const initPostSettings = {
   posts: [],
   update_post_id: null,
   loading: true,
+  search_term: null,
   form: {
     title: "",
     message: "",
@@ -17,6 +18,17 @@ export default (postsSettings = initPostSettings, action) => {
   switch (action.type) {
     case "FETCH_ALL_POST":
       return { ...postsSettings, loading: false, posts: action.payload };
+      break;
+    case "LOADING":
+      return { ...postsSettings, loading: true };
+      break;
+    case "SEARCHING_IN_POST":
+      return {
+        ...postsSettings,
+        posts: action.payload.data,
+        search_term: action.payload.term,
+        loading: false,
+      };
       break;
     case "CREATE_POST":
       return {

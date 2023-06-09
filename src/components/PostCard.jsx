@@ -9,16 +9,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { DeletePost, editPost, likePost } from "../redux/actions/post";
 import { openModalFun } from "../redux/actions/settings";
 
-function PostCard({ item }) {
+function PostCard({ item, user_id }) {
   // const id  = _id;
   const { relativeclass } = useSelector((s) => s.settings);
   // relativeclass();
-  // console.log(relativeclass);
+
   const { _id, selectedFiled, title, message, LikeCount } = item;
 
   const [ShowMenu, setShowMenu] = useState(false);
+  const [Likes, setLikes] = useState(item.likes.length);
   const dispatch = useDispatch();
   // Handel Open From
+
+  const [ISLiked, setIslinked] = useState(
+    item.likes.find((el) => el == user_id)
+  );
+  // console.log(relativeclass);
+  const SubmitLike = (id) => {
+    setIslinked(!ISLiked);
+    if (!ISLiked) setLikes(Likes + 1);
+    else setLikes(Likes - 1);
+    dispatch(likePost(id));
+    console.log(id);
+  };
+
   const HandelEditFrom = (id) => {
     dispatch(editPost(id));
     dispatch(openModalFun());
@@ -72,13 +86,17 @@ function PostCard({ item }) {
         <div>
           <span
             className="p-2 cursor-pointer"
-            onClick={() => dispatch(likePost(item._id))}
+            onClick={() => SubmitLike(item._id)}
           >
-            {LikeCount > 0 ? (
-              <FcLike size={30} />
-            ) : (
-              <FcLikePlaceholder size={30} />
-            )}
+            <div className="flex items-center gap-2 justify-center">
+              <span className="text-2xl text-bold">{Likes}</span>
+
+              {ISLiked > 0 ? (
+                <FcLike size={30} />
+              ) : (
+                <FcLikePlaceholder size={30} />
+              )}
+            </div>
           </span>
         </div>
       </div>

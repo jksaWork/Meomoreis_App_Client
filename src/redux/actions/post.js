@@ -4,9 +4,7 @@ export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPostAPi();
     dispatch({ type: "FETCH_ALL_POST", payload: data });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 export const createPost = (post) => async (dispatch) => {
@@ -20,7 +18,6 @@ export const createPost = (post) => async (dispatch) => {
 
 export const editPost = (_id) => async (dispatch) => {
   try {
-    console.log(_id);
     dispatch({ type: "EDIT_POST", payload: _id });
   } catch (error) {
     console.log(error);
@@ -38,12 +35,18 @@ export const updatePost = (post, id) => async (dispatch) => {
 
 export const DeletePost = (id) => async (dispatch) => {
   try {
-    console.log(id);
     const { data } = await api.DeletePostApi(id);
     dispatch({ type: "DELETE_POST", payload: data });
   } catch (error) {
     console.log(error);
   }
+};
+
+export const SerachInPost = (term) => async (dispatch) => {
+  dispatch({ type: "LOADING", payload: null });
+  const { data } = await api.SerachInPostAPi(term);
+  console.log(data);
+  dispatch({ type: "SEARCHING_IN_POST", payload: data });
 };
 
 export const likePost = (id) => async (dispatch) => {
