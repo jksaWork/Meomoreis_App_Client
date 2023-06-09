@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../redux/actions/post";
 
 import { MessageFromSchema } from "../validators/MessageFormValidator";
+import CustomFiled from "./CustomFiled";
 
 export const ValidationSchemaExample = () => {
   const [baseValue, setbaseValue] = useState({});
@@ -32,38 +33,32 @@ export const ValidationSchemaExample = () => {
             <Form className="px-3">
               <Field
                 name="title"
-                className="bg-secondary mt-3 mb-2  border-primary-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   
+                component={CustomFiled}
+                className="bg-secondary mt-3 mb-2   text-white border-primary-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   
             dark:focus:border-blue-500"
               />
-              {errors.title && touched.title ? (
-                <div className="text-[#e11d48]">{errors.title}</div>
-              ) : null}
+
               <Field
                 name="creator"
-                className="bg-secondary mt-3 mb-2  border-primary-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   
+                component={CustomFiled}
+                className="bg-secondary mt-3 mb-2 text-white  border-primary-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   
             dark:focus:border-blue-500"
               />
-              {errors.creator && touched.creator ? (
-                <div className="text-[#e11d48]">{errors.creator}</div>
-              ) : null}
+
               <Field
                 name="message"
+                component={CustomFiled}
                 type="text"
-                className="bg-secondary mt-3 mb-2  border-primary-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   
+                className="bg-secondary mt-3 mb-2  border-primary-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   
               dark:focus:border-blue-500"
               />
-              {errors.message && touched.message ? (
-                <div className="text-[#e11d48]">{errors.message}</div>
-              ) : null}
               <Field
                 name="tags"
+                component={CustomFiled}
                 type="text"
-                className="bg-secondary mt-3 mb-2  border-primary-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   
+                className="bg-secondary text-white mt-3 mb-2  border-primary-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   
               dark:focus:border-blue-500"
               />
-              {errors.tags && touched.tags ? (
-                <div className="text-[#e11d48]">{errors.tags}</div>
-              ) : null}
               <FileBase64
                 multiple={false}
                 onDone={(val) => {

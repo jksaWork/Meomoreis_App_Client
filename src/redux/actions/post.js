@@ -1,9 +1,17 @@
 import * as api from "../../APIs/posts";
 
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (page) => async (dispatch) => {
   try {
-    const { data } = await api.fetchPostAPi();
-    dispatch({ type: "FETCH_ALL_POST", payload: data });
+    dispatch("LOADING");
+    // console.log("Dipatch TO Fetch Posrt");
+    const {
+      data: { data, current_page, number_of_page },
+    } = await api.fetchPostAPi(page);
+    console.log(data);
+    dispatch({
+      type: "FETCH_ALL_POST",
+      payload: { current_page, number_of_page, posts: data },
+    });
   } catch (error) {}
 };
 

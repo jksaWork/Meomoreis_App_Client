@@ -50,32 +50,32 @@ function Register() {
                     <div className="grid grid-cols-2 gap-2">
                       <Field
                         component={CustomFiled}
-                        class="p-2 w-full bg-transparent border-solid border-[1px] border-gray rounded-md"
+                        className="p-2 w-full bg-transparent border-solid border-[1px] border-gray rounded-md"
                         name="first_name"
                         id="first_name"
                       />
                       <Field
                         component={CustomFiled}
-                        class="p-2 w-full bg-transparent  border-solid border-[1px] border-gray rounded-md"
+                        className="p-2 w-full bg-transparent  border-solid border-[1px] border-gray rounded-md"
                         name="last_name"
                         id="last_name"
                       />
                     </div>
                     <Field
                       component={CustomFiled}
-                      class="p-2 w-full bg-transparent  border-solid border-[1px] border-gray rounded-md"
+                      className="p-2 w-full bg-transparent  border-solid border-[1px] border-gray rounded-md"
                       name="email"
                       id="email"
                     />
                     <Field
                       component={CustomFiled}
-                      class="p-2 w-full bg-transparent  border-solid border-[1px] border-gray rounded-md"
+                      className="p-2 w-full bg-transparent  border-solid border-[1px] border-gray rounded-md"
                       name="password"
                       id="password"
                     />
                     <Field
                       component={CustomFiled}
-                      class="p-2 w-full bg-transparent  border-solid border-[1px] border-gray rounded-md"
+                      className="p-2 w-full bg-transparent  border-solid border-[1px] border-gray rounded-md"
                       name="password_confirm"
                       id="password_confirm"
                     />

@@ -51,13 +51,13 @@ function Login() {
                   <Form>
                     <Field
                       component={CustomFiled}
-                      class="p-2 w-full bg-transparent border-solid border-[1px] border-gray rounded-md"
+                      className="p-2 w-full bg-transparent border-solid border-[1px] border-gray rounded-md"
                       name="email"
                       id="name"
                     />
                     <Field
                       component={CustomFiled}
-                      class="p-2 w-full bg-transparent  border-solid border-[1px] border-gray rounded-md"
+                      className="p-2 w-full bg-transparent  border-solid border-[1px] border-gray rounded-md"
                       name="password"
                       id="name"
                     />

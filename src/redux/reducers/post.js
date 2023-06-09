@@ -2,7 +2,9 @@ const initPostSettings = {
   posts: [],
   update_post_id: null,
   loading: true,
+  number_of_page: null,
   search_term: null,
+  current_page: null,
   form: {
     title: "",
     message: "",
@@ -17,7 +19,13 @@ export default (postsSettings = initPostSettings, action) => {
   const { posts } = postsSettings;
   switch (action.type) {
     case "FETCH_ALL_POST":
-      return { ...postsSettings, loading: false, posts: action.payload };
+      return {
+        ...postsSettings,
+        loading: false,
+        number_of_page: action.payload.number_of_page,
+        posts: action.payload.posts,
+        current_page: action.payload.current_page,
+      };
       break;
     case "LOADING":
       return { ...postsSettings, loading: true };

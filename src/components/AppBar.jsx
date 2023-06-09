@@ -8,11 +8,18 @@ import { Link } from "react-router-dom";
 import { Logout } from "../redux/actions/users";
 // import { Form, Formik, Filed } from "formik";
 import { Field, Form, Formik } from "formik";
-import { SerachInPost } from "../redux/actions/post";
+import { SerachInPost, createPost } from "../redux/actions/post";
 const BarMenus = ({ dispatch }) => {
   return (
     <div className="fixed top-[50px]  rounded-md w-[200px] p-3 right-3  bg-card">
       <div className="relative z-[10000000]">
+        <div
+          className="w-full block p-1 hover:bg-gray-500"
+          onClick={() => dispatch(openModalFun())}
+        >
+          {" "}
+          Add Post{" "}
+        </div>
         <div className="w-full block p-1 hover:bg-gray-500"> My Profile </div>
         <div className="w-full block p-1 hover:bg-gray-500"> My Posts </div>
         <div
@@ -86,7 +93,7 @@ function Search() {
       <div
         className={`absolute ${
           !OpenSerach ? "top-[-100%]" : "top-0"
-        } transition-all  duration-[2000]
+        } transition-all  duration-[3000]
       left-0 w-full bg-white h-[100%]  py-2`}
       >
         <Formik
