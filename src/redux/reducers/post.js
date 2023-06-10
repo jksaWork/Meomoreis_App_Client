@@ -5,6 +5,7 @@ const initPostSettings = {
   number_of_page: null,
   search_term: null,
   current_page: null,
+  post: null,
   form: {
     title: "",
     message: "",
@@ -88,6 +89,13 @@ export default (postsSettings = initPostSettings, action) => {
       return {
         ...postsSettings,
         posts: new_posts,
+      };
+      break;
+
+    case "FETCH_SINGLE_POST":
+      return {
+        ...postsSettings,
+        post: action.payload,
       };
       break;
     default:

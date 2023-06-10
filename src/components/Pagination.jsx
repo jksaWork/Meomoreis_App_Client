@@ -12,6 +12,7 @@ function Pagination({ pages = 3, dispatch, getData, current_page }) {
         {(() => {
           const pageslinks = new Array(pages).fill("1").map((el, index) => (
             <li
+              key={index + el}
               onClick={() => dispatch(getData(index + 1))}
               aria-current={true && "page"}
             >
@@ -23,7 +24,7 @@ function Pagination({ pages = 3, dispatch, getData, current_page }) {
               >
                 {index + 1}
                 {true && (
-                  <span class="absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]">
+                  <span className="absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]">
                     (current)
                   </span>
                 )}

@@ -6,12 +6,18 @@ import Modal from "./components/Modal";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import { initAppAction } from "./redux/actions/users";
+import ShowPost from "./components/ShowPost";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
   },
+  {
+    path: "/show/post/:id",
+    element: <ShowPost />,
+  },
+
   {
     path: "/login",
     element: <Login />,

@@ -13,7 +13,6 @@ export default (state = initUserSettings, action) => {
   let data = {};
   switch (action.type) {
     case INITAPP:
-      console.log("Hello From Here");
       const dataStorage = JSON.parse(localStorage.getItem("user"));
 
       data = {
@@ -24,7 +23,6 @@ export default (state = initUserSettings, action) => {
       return { ...state, ...data };
       break;
     case REGISTER:
-      console.log("Hello From Here");
       data = {
         UserData: action.payload.user,
         token: action.payload.token,

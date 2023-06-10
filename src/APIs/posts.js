@@ -10,8 +10,10 @@ API.interceptors.request.use(function (req) {
   return req;
 });
 
-export const fetchPostAPi = async (page = 1) =>
+export const fetchPostsAPi = async (page = 1) =>
   await API.get(`/posts?page=${page}`);
+
+export const fetchPostAPi = async (id) => await API.get(`/posts/${id}`);
 export const SerachInPostAPi = async (terms) =>
   await API.get(`/posts/search?term=${terms}`);
 export const CreatePostApi = async (post) => await API.post("/posts", post);
